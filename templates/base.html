@@ -1,0 +1,166 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
+
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+    <title>Базовая Админка</title>
+
+    <link rel="stylesheet" href="{% static 'js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-icons/entypo/css/entypo.css' %}">
+{#    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">#}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/neon-core.css' %}">
+    <link rel="stylesheet" href="{% static 'css/neon-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/neon-forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skins/white.css' %}">
+
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <!--[if lt IE 9]><script src="{% static 'js/ie8-responsive-file-warning.js' %}"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
+</head>
+<body class="page-body skin-white">
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+    <div class="sidebar-menu">
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <!-- logo -->
+                <div class="logo">
+                    <a href="/">
+                        <!-- img src="" width="120" alt=""/ -->
+                        <span class="h4">МАМА Я АДМИН</span>
+                    </a>
+                </div>
+
+                <!-- logo collapse icon -->
+                <div class="sidebar-collapse">
+                    <a href="#" class="sidebar-collapse-icon">
+                        <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+
+
+                <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+                <div class="sidebar-mobile-menu visible-xs">
+                    <a href="#" class="with-animation"><!-- add class "with-animation" to support animation -->
+                        <i class="entypo-menu"></i>
+                    </a>
+                </div>
+
+            </header>
+
+            <ul id="main-menu" class="main-menu">
+
+                <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+
+                <li class="{% block security %}{% endblock security %}">
+                    <a href="/base">
+                        <i class="entypo-lock"></i>
+                        <span class="title">Меню 1</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/base">
+                        <i class="entypo-battery"></i>
+                        <span class="title">Меню 2</span>
+{#                        <span class="badge badge-danger">пора пополнить</span>#}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/base">
+                        <i class="entypo-chat"></i>
+                        <span class="title">Меню 3</span>
+                    </a>
+                </li>
+
+
+                <li class="has-sub">
+					<a href="#">
+						<i class="entypo-doc-text"></i>
+						<span class="title">Меню 4</span>
+					</a>
+
+                    <ul>
+                        <li class="">
+                            <a href="/base">
+                                <span class="title">Подменю 1</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="/base">
+                                <span class="title">Подменю 2</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="main-content">
+        <div class="row"> <!-- Profile Info and Notifications -->
+            <div class="col-md-6 col-sm-8 clearfix">
+                <ul class="list-inline links-list">
+                    <li><a href="/base">Вы зашли как: {{ user.first_name }} {{ user.last_name }} из организации {{ user.client.name }}</a></li>
+                </ul>
+            </div>
+            <!-- Raw Links -->
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <ul class="list-inline links-list pull-right">
+                    <li><a href="/logout">LogOut <i class="entypo-logout right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+
+</div>
+
+<!-- Bottom scripts (common) -->
+<script src="{% static 'js/gsap/TweenMax.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/joinable.js' %}"></script>
+<script src="{% static 'js/resizeable.js' %}"></script>
+<script src="{% static 'js/neon-api.js' %}"></script>
+
+{% block js %}{% endblock js %}
+
+<!-- JavaScripts initializations and stuff -->
+<script src="{% static 'js/neon-custom.js' %}"></script>
+
+<!-- Demo Settings -->
+<script src="{% static 'js/neon-demo.js' %}"></script>
+
+</body>
+</html>
